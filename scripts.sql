@@ -30,7 +30,7 @@ INSERT INTO PropertyDetails (Address, City, State, Country, ZoningType, Utility,
 SELECT * FROM PropertyDetails;
 -----------------Normalize to 3NF-----------------
 
--- Create City Demographics table
+-- Create City Demographics table, these variables are dependant on the City variable, not the PropertyID variable
 CREATE TABLE CityDemographics (
     City VARCHAR(255) PRIMARY KEY, -- City is primary key
     State VARCHAR(255),
@@ -43,7 +43,7 @@ INSERT INTO CityDemographics (City, State, Country, CityPopulation) VALUES
 ('WORCESTER', 'MA', 'USA', 205918),
 ('AUBURN', 'MA', 'USA', 16889)
 
--- Drop columns from PropertyDetails 
+-- Remove columns from PropertyDetails 
 ALTER TABLE PropertyDetails DROP COLUMN CityPopulation, DROP COLUMN State, DROP COLUMN Country;
 
 -- Add Forign key constraint to PropertyDetails
@@ -56,6 +56,7 @@ SELECT * FROM CityDemographics;
 
 -----------------Normalize to 4NF-----------------
 
+-- Zoning and Utilities are indipendant of one another, but both depend on PropertyID.
 -- Create PropertyZoning table with foreign key PropertyID
 CREATE TABLE PropertyZoning (
     PropertyZoningID SERIAL PRIMARY KEY,
