@@ -13,7 +13,8 @@ To use scripts.sql, first create a new postgresql database (with postgis enabled
 
 This project took place using the pgAdmin 4 for PostgreSQL, and extensively used the postgis extension. 
 This input dataset was 1NF compliant, as all the values are atomic, have unique attribute names, have the same variable type, and do not depend on order.
-The input dataset was also 2NF compliant, as there was no partial dependance, becuase there was not a compound key
+The input dataset was also 2NF compliant, as there was no partial dependance, becuase there was not a compound key. 
+I am assuming that the Facilities column only lists one utility, the most recently added one. 
 
 To normalize the dataset to 3NF, transative dependancies needed to be eliminated. 
 The state, country, and citypopulation variables are all dependant on the 'city' variable, not the primary key.
